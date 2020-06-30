@@ -12,8 +12,18 @@ class Average{
      */
     public function mean(array $numbers)
     {
+        $contador=0;
+        $contv = 0;
+        echo $contador;
         if (count($numbers)> 0){
-            return array_sum($numbers) / count($numbers);
+            while($contador != count($numbers)){
+                $contador = $contador + 1;
+                echo $contador;
+                if(is_int($numbers[$contador])!=1){
+                    $contv = $contv + 1;
+                }
+            }
+            return array_sum($numbers) / (count($numbers) - $contv);
         }else{
             return "ERRO";
         }       
