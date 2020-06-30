@@ -14,14 +14,15 @@ class Average{
     {
         $contador=0;
         $contv = 0;
-        echo $contador;
         if (count($numbers)> 0){
             while($contador != count($numbers)){
-                $contador = $contador + 1;
-                echo $contador;
-                if(is_int($numbers[$contador])!=1){
+                if(is_int($numbers[$contador])){
+                    $contv = $contv;
+                }
+                else{
                     $contv = $contv + 1;
                 }
+                $contador = $contador + 1;
             }
             return array_sum($numbers) / (count($numbers) - $contv);
         }else{
@@ -36,13 +37,26 @@ class Average{
      */
     public function median(array $numbers)
     {
-        sort($numbers);
-        $size = count($numbers);
-        if ($size % 2) {
-            return $numbers[$size / 2];
-        } else {
-            return $this->mean(array_slice($numbers, ($size / 2) - 1, 2)
-            );
+        $array = array();
+        $contador =0;
+        if (count($numbers)> 0){
+            while($contador != count($numbers)){
+                if(is_int($numbers[$contador])){
+                    array_push($array,$numbers[$contador]);
+                }
+                $contador = $contador + 1;
+            }
+            sort($array);
+            $size = count($array);
+            if ($size % 2) {
+                return $array[$size / 2];
+            } else {
+                return $this->mean(array_slice($array, ($size / 2) - 1, 2)
+                );
+            }
+        }
+        else{
+            return "ERRO";
         }
     }
 

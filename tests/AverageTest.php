@@ -20,7 +20,7 @@ class AverageTest extends TestCase
 
     public function testCalculandoMediaComLixo() //media
     {
-        $numbers = ['a',6];
+        $numbers = ['a',5,1];
         $this->assertEquals(3, $this->Average->mean($numbers));
     }
 
@@ -32,7 +32,13 @@ class AverageTest extends TestCase
 
     public function testCalculandoMediana() //mediana
     {
-        $numbers = [3, 7, 6, 1, 5];
+        $numbers = [3, 7, 6, 1, 5,10,2];
+        $this->assertEquals(5, $this->Average->median($numbers));
+    }
+
+    public function testCalculandoMedianacomLixo() //mediana
+    {
+        $numbers = ['a','a',3, 7, 6, 1, 5];
         $this->assertEquals(5, $this->Average->median($numbers));
     }
 
