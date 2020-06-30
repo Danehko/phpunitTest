@@ -2,8 +2,9 @@
 
 namespace drmonkeyninja;
 
-class Average
-{
+class Average{
+    public $aux1 = 0;
+
     /**
      * Calculate the mean average
      * @param array $numbers Array of numbers
@@ -15,8 +16,7 @@ class Average
             return array_sum($numbers) / count($numbers);
         }else{
             return "ERRO";
-        }
-        
+        }       
     }
 
     /**
