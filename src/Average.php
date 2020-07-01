@@ -13,20 +13,18 @@ class Average{
     public function mean(array $numbers)
     {
         $contador=0;
-        $contv = 0;
         if (count($numbers)> 0){
             while($contador != count($numbers)){
                 if(is_int($numbers[$contador])){
-                    $contv = $contv;
+                    $contador = $contador + 1;
                 }
                 else{
-                    $contv = $contv + 1;
+                    return "ERROR-01";
                 }
-                $contador = $contador + 1;
             }
-            return array_sum($numbers) / (count($numbers) - $contv);
+            return array_sum($numbers) / count($numbers);
         }else{
-            return "ERRO";
+            return "ERROR-00";
         }       
     }
 
@@ -37,52 +35,82 @@ class Average{
      */
     public function median(array $numbers)
     {
-        $array = array();
         $contador =0;
         if (count($numbers)> 0){
             while($contador != count($numbers)){
                 if(is_int($numbers[$contador])){
-                    array_push($array,$numbers[$contador]);
+                    $contador = $contador + 1;
                 }
-                $contador = $contador + 1;
+                else
+                {
+                    return "ERROR-01";
+                }
             }
-            sort($array);
-            $size = count($array);
+            sort($numbers);
+            $size = count($numbers);
             if ($size % 2) {
-                return $array[$size / 2];
+                return $numbers[$size / 2];
             } else {
-                return $this->mean(array_slice($array, ($size / 2) - 1, 2)
-                );
+                return $this->mean(array_slice($numbers, ($size / 2) - 1, 2));
             }
         }
         else{
-            return "ERRO";
+            return "ERROR-00";
         }
     }
 
     public function sum(array $numbers)
     {
-        return array_sum($numbers);
+        $contador =0;
+        if (count($numbers)> 0){
+            while($contador != count($numbers)){
+                if(is_int($numbers[$contador])){
+                    $contador = $contador + 1;
+                }
+                else
+                {
+                    return "ERROR-01";
+                }
+            }
+            return array_sum($numbers);
+        }
+        else{
+            return "ERROR-00";
+        }        
     }
 
     public function calculator($opcao, array $numbers)
     {
-        switch($opcao){
-            case 0:
-                return $this->mean($numbers);
-            case 1:
-                return $this->median($numbers);
-            case 2:
-                return $this->sum($numbers);
-            default:
-                return $numbers;
+        $contador =0;
+        if (count($numbers)> 0){
+            while($contador != count($numbers)){
+                if(is_int($numbers[$contador])){
+                    $contador = $contador + 1;
+                }
+                else
+                {
+                    return "ERROR-01";
+                }
+            }
+            switch($opcao){
+                case 0:
+                    return $this->mean($numbers);
+                case 1:
+                    return $this->median($numbers);
+                case 2:
+                    return $this->sum($numbers);
+                default:
+                    return "ERROR-02";
+            }
         }
-
+        else{
+            return "ERROR-00";
+        }
     }
 
-    public function confereTexto($senha)
+    public function confereTexto($senhaConta, $senhaDigitada )
     {
-        if($senha == "Daniel"){
+        if($senhaConta == $senhaDigitada){
             return TRUE;
         }
         else{
