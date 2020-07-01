@@ -8,6 +8,7 @@
     	}
     },
     "require": {
-        "cviebrock/eloquent-sluggable": "^7.0"
+        "cviebrock/eloquent-sluggable": "^7.0",
+        "myclabs/php-enum": "^1.7"
     }
 }

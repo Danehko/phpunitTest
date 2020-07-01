@@ -1,6 +1,11 @@
 <?php
 
 namespace drmonkeyninja;
+require __DIR__ . "/../vendor/autoload.php";
+
+const VAZIO     = "ERROR-00"; //PARAMETRO VAZIO 
+const LIXO      = "ERROR-01"; //PARAMETRO INFORMADO ERRADO
+const OPCAO_INV = "ERROR-02"; //OPÇÃO INVALIDA
 
 class Average{
     public $aux1 = 0;
@@ -19,12 +24,12 @@ class Average{
                     $contador = $contador + 1;
                 }
                 else{
-                    return "ERROR-01";
+                    return LIXO;
                 }
             }
             return array_sum($numbers) / count($numbers);
         }else{
-            return "ERROR-00";
+            return VAZIO;
         }       
     }
 
@@ -35,6 +40,7 @@ class Average{
      */
     public function median(array $numbers)
     {
+        $retorno =0;
         $contador =0;
         if (count($numbers)> 0){
             while($contador != count($numbers)){
@@ -43,19 +49,20 @@ class Average{
                 }
                 else
                 {
-                    return "ERROR-01";
+                    return LIXO;
                 }
             }
             sort($numbers);
             $size = count($numbers);
             if ($size % 2) {
-                return $numbers[$size / 2];
+                $retorno = $numbers[$size / 2];
             } else {
-                return $this->mean(array_slice($numbers, ($size / 2) - 1, 2));
+                $retorno = $this->mean(array_slice($numbers, ($size / 2) - 1, 2));
             }
+            return $retorno;
         }
         else{
-            return "ERROR-00";
+            return VAZIO;
         }
     }
 
@@ -69,18 +76,19 @@ class Average{
                 }
                 else
                 {
-                    return "ERROR-01";
+                    return LIXO;
                 }
             }
             return array_sum($numbers);
         }
         else{
-            return "ERROR-00";
+            return VAZIO;
         }        
     }
 
     public function calculator($opcao, array $numbers)
     {
+        $retorno = 0;
         $contador =0;
         if (count($numbers)> 0){
             while($contador != count($numbers)){
@@ -89,23 +97,28 @@ class Average{
                 }
                 else
                 {
-                    return "ERROR-01";
+                    return LIXO;
                 }
             }
             switch($opcao){
                 case 0:
-                    return $this->mean($numbers);
+                    $retorno = $this->mean($numbers);
+                break;
                 case 1:
-                    return $this->median($numbers);
+                    $retorno = $this->median($numbers);
+                break;
                 case 2:
-                    return $this->sum($numbers);
+                    $retorno = $this->sum($numbers);
+                break;
                 default:
-                    return "ERROR-02";
+                    $retorno = OPCAO_INV;
+                break;   
             }
+            return $retorno; 
         }
         else{
-            return "ERROR-00";
-        }
+            return VAZIO;
+        }   
     }
 
     public function confereTexto($senhaConta, $senhaDigitada )

@@ -1,4 +1,4 @@
-3+7+<?php
+<?php
 
 use drmonkeyninja\Average;
 use PHPUnit\Framework\TestCase;
